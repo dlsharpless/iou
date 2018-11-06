@@ -1,0 +1,31 @@
+.header {
+    background-color: #F08700;
+    color: whitesmoke;
+    top: 0;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+body {
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+table, th, td {
+    border: solid 3px black;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 2px;
+    background-color: #BBDEF0;
+}
+
+button {
+    background-color: #EFCA08;
+    border: solid 3px black;
+}
+
+.payable {
+    color: red;
+}

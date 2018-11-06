@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Create an IOU</title>
+</head>
+<body>
+    <div class="header">
+        <h1>IOU</h1>
+    </div>
+    <div id="form">
+        <p>Create an IOU</p>
+        <p>Purpose
+            <select id="purpose">
+                <option value="Lend">Lend</option>
+                <option value="Borrow">Borrow</option>
+            </select>
+        </p>
+        <label for="otherParty">Other party:</label>
+        <input id="otherParty"><br>
+        <label for="principal">Principal amount:</label>
+        <input id="principal"><br>
+        <label for="interest">Interest:</label>
+        <input id="interest"><br>
+        <label for="start_date">Start date:</label>
+        <input id="start_date"><br>
+        <label for="end_date">End date:</label>
+        <input id="end_date"><br>
+        <button>Submit</button>
+    </div>
+    <!-- Interest
+    Schedule -->
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
