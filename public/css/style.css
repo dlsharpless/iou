@@ -3,17 +3,32 @@
     color: whitesmoke;
     top: 0;
     padding: 10px 0px;
-    margin-bottom: 10px;
+    border-top: solid 5px #F49F0A;
+    border-bottom: solid 5px #F49F0A;
+}
+
+h1 {
+    font-family: "Pacifico";
+    font-size: 50px;
 }
 
 body {
     text-align: center;
-    background-color: whitesmoke;
+    color: whitesmoke;
+    background-image: url("/media/i3.jpg");
 }
 
 table, th, td {
     border: solid 3px black;
     border-collapse: collapse;
+    background-color: whitesmoke;
+    color: black;
+}
+
+table {
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 th {
@@ -28,4 +43,45 @@ button {
 
 .payable {
     color: red;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+.right400 {
+    margin: auto;
+    width: 400px;
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.center400 {
+    margin: auto;
+    width: 400px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.left400 {
+    margin: auto;
+    width: 400px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 200px;
+    height: 100px;
+}
+
+input {
+    width: 200px;
+}
+
+.left400 textarea {
+    width: 300px;
 }

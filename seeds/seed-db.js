@@ -31,36 +31,50 @@ const loans = [
   {
     lender: "user1@user1.com",
     borrower: "user3@user3.com",
-    status: "closed",
+    status: "Closed",
     principal: 100,
     interest: 50,
     balance: 0,
-    initial_term: 30,
-    start_date: 10/01/2018,
-    end_date: 10/31/2018
+    startDate: "10/01/2018",
+    endDate: "10/31/2018",
+    notes1: "user1@user1.com: Loan for new car battery",
+    notes2: "user3@user3.com: I 'll pay you back with interest."
   },
   {
     lender: "user2@user2.com",
     borrower: "user1@user1.com",
-    status: "active",
+    status: "Active",
     principal: 50,
     interest: 10,
     balance: 30,
-    initial_term: 14,
-    start_date: 11/01/2018,
-    end_date: 11/15/2018
+    startDate: "11/01/2018",
+    endDate: "11/15/2018",
+    notes1: "user1@user1.com: Loan for locksmith",
+    notes2: "user2@user2.com: Make another set of keys and I'll hang on to them for you in the future!"
   },
   {
     lender: "user3@user3.com",
     borrower: "user2@user2.com",
-    status: "pending",
+    status: "Denied",
     principal: 600,
     interest: 200,
-    balance: 800,
-    initial_term: 365,
-    start_date: 11/07/2018,
-    end_date: 11/07/2019
+    balance: 0,
+    startDate: "09/01/2018",
+    endDate: "01/31/2019",
+    notes1: "user2@user2.com: Loan for computer",
+    notes2: "user3@user3.com: I can't afford to make this loan."
   },
+  {
+    lender: "user3@user3.com",
+    borrower: "user1@user1.com",
+    status: "Pending",
+    principal: 1000,
+    interest: 200,
+    startDate: "11/07/2018",
+    endDate: "11/07/2019",
+    notes1: "user1@user1.com: Loan for housing deposit and rent",
+    authority: "user3@user3.com"
+  }
 ];
 
 db.sequelize.sync({}).then(function () {

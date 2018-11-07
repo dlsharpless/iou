@@ -22,16 +22,21 @@ module.exports = function (sequelize, DataTypes) {
         },
         balance: {
             type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
         },
-        initial_term: {
-            type: DataTypes.INTEGER
+        startDate: {
+            type: DataTypes.STRING
         },
-        start_date: {
-            type: DataTypes.DATE
+        endDate: {
+            type: DataTypes.STRING
         },
-        end_date: {
-            type: DataTypes.DATE
+        notes1: {
+            type: DataTypes.STRING
+        },
+        notes2: {
+            type: DataTypes.STRING
+        },
+        authority: {
+            type: DataTypes.STRING
         }
     });
 
