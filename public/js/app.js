@@ -62,7 +62,7 @@ const dashboardPage = function () {
             } else if (response[i].borrower === activeUser) {
                 peer.text(response[i].lender);
                 payable.text(response[i].balance);
-                if (response[i].balance != 0) {
+                if (response[i].balance != 0.00) {
                     payable.addClass("payable");
                 }
             }
@@ -219,7 +219,7 @@ const viewDetails = function (loanId) {
             id: loanId
         }
     }).then(function (response) {
-        let balance = response.principal + response.interest;
+        let balance = parseFloat(response.principal) + parseFloat(response.interest);
         $("#content").html(`
             <div class="center400">
                 <h3>Loan Details</h3>

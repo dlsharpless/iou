@@ -68,7 +68,7 @@ router.get("/api/loans/:id", function (req, res) {
     })
 });
 
-router.put("/api/approve", function (req, res) {
+router.put("/api/loans", function (req, res) {
     db.loans.update({
         status: req.body.status,
         balance: req.body.balance,
