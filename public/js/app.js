@@ -47,7 +47,7 @@ const dashboardPage = function () {
     }).then(function (response) {
         $("#hello").append(activeName);
         if (response.length === 0) {
-            $("#loansTbody").html(`<tr><td colspan="4">No loans to display.</td></tr>`);
+            $("#loansTbody").html(`<tr><td colspan="5">No loans to display.</td></tr>`);
         }
         for (i=0;i<response.length;i++) {
             let loanRow = $("<tr>").addClass("loan");
@@ -182,6 +182,7 @@ const postLoan = function () {
     let startDate = $("#startDate").val().trim();
     let endDate = $("#endDate").val().trim();
     let notes1 = `${activeUser}: ${$("#notes").val().trim()}`;
+    let authority = otherParty;
     if (purpose === "Lend") {
         lender = activeUser;
         borrower = otherParty;
@@ -189,7 +190,7 @@ const postLoan = function () {
         lender = otherParty;
         borrower = activeUser;
     }
-    if (lender && borrower && principal && interest && startDate && endDate) {
+    if (lender && borrower && principal && interest && startDate && endDate && authority) {
         $.ajax({
             url: "/api/loans",
             method: "POST",
@@ -201,7 +202,8 @@ const postLoan = function () {
                 interest: interest,
                 startDate: startDate,
                 endDate: endDate,
-                notes1: notes1
+                notes1: notes1,
+                authority: authority
             }
         }).then(function (response) {
             if(response.success){
