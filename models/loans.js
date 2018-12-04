@@ -1,44 +1,46 @@
-module.exports = function (sequelize, DataTypes) {
-    const loans = sequelize.define("loans", {
-        lender: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        borrower: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        status: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        principal: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
-        },
-        interest: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
-        },
-        balance: {
-            type: DataTypes.DECIMAL(10, 2),
-        },
-        startDate: {
-            type: DataTypes.STRING
-        },
-        endDate: {
-            type: DataTypes.STRING
-        },
-        notes1: {
-            type: DataTypes.STRING
-        },
-        notes2: {
-            type: DataTypes.STRING
-        },
-        authority: {
-            type: DataTypes.STRING
-        }
-    });
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-    return loans;
-}
+const LoanSchema = new Schema({
+    lender: {
+        type: String,
+        required: true
+    },
+    borrower: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true
+    },
+    principal: {
+        type: Schema.Types.Decimal128,
+        required: true
+    },
+    interest: {
+        type: Schema.Types.Decimal128,
+        required: true
+    },
+    balance: {
+        type: Schema.Types.Decimal128
+    },
+    startDate: {
+        type: String
+    },
+    endDate: {
+        type: String
+    },
+    notes1: {
+        type: String
+    },
+    notes2: {
+        type: String
+    },
+    authority: {
+        type: String
+    }
+});
+
+const Loan = mongoose.model('Loan', LoanSchema);
+module.exports = Loan;

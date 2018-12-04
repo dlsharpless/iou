@@ -55,14 +55,14 @@ const dashboardPage = function () {
             let status = $("<td>").text(response[i].status);
             let payable = $("<td>");
             let receivable = $("<td>");
-            let details = $("<td>").html(`<button class="details" loanId=${response[i].id}>View</button>`);
+            let details = $("<td>").html(`<button class="details" loanId=${response[i]._id}>View</button>`);
             if (response[i].lender === activeUser) {
                 peer.text(response[i].borrower);
-                receivable.text(response[i].balance);
+                receivable.text(response[i].balance.$numberDecimal);
             } else if (response[i].borrower === activeUser) {
                 peer.text(response[i].lender);
-                payable.text(response[i].balance);
-                if (response[i].balance != 0.00) {
+                payable.text(response[i].balance.$numberDecimal);
+                if (response[i].balance.$numberDecimal != 0.00) {
                     payable.addClass("payable");
                 }
             }
@@ -154,14 +154,14 @@ const postUser = function () {
                 email: email,
                 password: password1,
                 name: name,
-                phone: phone}
+                phone: phone
+            }
         }).then(function (response) {
             if(response.success){
                 activeUser = email;
                 activeName = name;
                 dashboardPage();
             }
-
         })
     }
 }
@@ -217,11 +217,11 @@ const viewDetails = function (loanId) {
     $.ajax({
         url: `/api/loans/${loanId}`,
         method: "GET",
-        data: {
-            id: loanId
-        }
+        // data: {
+        //     _id: loanId
+        // }
     }).then(function (response) {
-        let balance = parseFloat(response.principal) + parseFloat(response.interest);
+        let balance = parseFloat(response.principal.$numberDecimal) + parseFloat(response.interest.$numberDecimal);
         $("#content").html(`
             <div class="center400">
                 <h3>Loan Details</h3>
@@ -231,9 +231,9 @@ const viewDetails = function (loanId) {
                 <p>Lender: ${response.lender}</p>
                 <p>Borrower: ${response.borrower}</p>
                 <p>Status: ${response.status}</p>
-                <p>Principal: ${response.principal}</p>
-                <p>Interest: ${response.interest}</p>
-                <p>Balance: ${response.balance || "Pending"}</p>
+                <p>Principal: ${response.principal.$numberDecimal}</p>
+                <p>Interest: ${response.interest.$numberDecimal}</p>
+                <p>Balance: ${response.balance ? response.balance.$numberDecimal : "Pending"}</p>
                 <p>Start Date: ${response.startDate}</p>
                 <p>End Date: ${response.endDate}</p>
                 <p>Notes:</p><p>${response.notes1}</p>

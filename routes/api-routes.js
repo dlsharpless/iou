@@ -4,29 +4,25 @@ const db = require("../models");
 
 router.post("/api/login", function (req, res) {
     db.users.findOne({
-        where: {
-            email: req.body.username
-        }
+        email: req.body.username
     }).then(function (response, error) {
         if (error) {
-            res.json(error)
+           return res.json(error)
         }
         if (!response || !response.password || req.body.password != response.password) {
-            res.json({success:false})
+           return res.json({ success: false })
         } else {
-            res.json({
-                success:true,
-                name:response.name
+          return res.json({
+                success: true,
+                name: response.name
             })
         }
     })
 });
 
 router.post("/api/dashboard", function (req, res) {
-    db.loans.findAll({
-        where: {
-            [db.Sequelize.Op.or]: [{lender: req.body.activeUser}, {borrower: req.body.activeUser}]
-        }
+    db.loans.find({
+        $or: [{ 'lender': req.body.activeUser }, { 'borrower': req.body.activeUser }]
     }).then(function (response, error) {
         if (error) {
             res.json(error)
@@ -40,7 +36,7 @@ router.post("/api/users", function (req, res) {
         if (error) {
             res.json(error)
         } else {
-            res.json({success:true})
+            res.json({ success: true })
         }
     })
 });
@@ -50,16 +46,14 @@ router.post("/api/loans", function (req, res) {
         if (error) {
             res.json(error)
         } else {
-            res.json({success:true})
+            res.json({ success: true })
         }
     })
 });
 
 router.get("/api/loans/:id", function (req, res) {
     db.loans.findOne({
-        where: {
-            id: req.params.id
-        }
+        _id: req.params.id
     }).then(function (response, error) {
         if (error) {
             res.json(error)
@@ -69,18 +63,19 @@ router.get("/api/loans/:id", function (req, res) {
 });
 
 router.put("/api/loans", function (req, res) {
-    db.loans.update({
-        status: req.body.status,
-        balance: req.body.balance,
-        notes2: req.body.notes2,
-        authority: req.body.authority
-      },
-      {where: {id: req.body.loanId}}
+    db.loans.update(
+        { _id: req.body.loanId },
+        {
+            status: req.body.status,
+            balance: req.body.balance,
+            notes2: req.body.notes2,
+            authority: req.body.authority
+        }
     ).then(function (response, error) {
         if (error) {
             res.json(error)
         } else {
-            res.json({success:true})
+            res.json({ success: true })
         }
     })
 });
